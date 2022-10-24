@@ -54,5 +54,4 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideCharacter(apiService: ApiService): CharacterRepository = CharacterRepositoryImp(apiService)
-
 }

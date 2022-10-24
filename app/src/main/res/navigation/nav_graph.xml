@@ -24,7 +24,7 @@
         android:label="CharacterDetailFragment"
         tools:layout="@layout/fragment_character_detail">
         <argument
-            android:name="CharaceterItem"
+            android:name="characterItem"
             app:argType="com.ersinberkealemdaroglu.rickandmortyapp.domain.model.character.CharacterItem" />
     </fragment>
 </navigation>

@@ -7,6 +7,10 @@
         <variable
             name="characterItem"
             type="com.ersinberkealemdaroglu.rickandmortyapp.domain.model.character.CharacterItem" />
+
+        <variable
+            name="characterItems"
+            type="com.ersinberkealemdaroglu.rickandmortyapp.ui.CharacterItemUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="280dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:downloadImageUrl="@{characterItem.image.toString()}"
+            android:downloadImageUrl="@{characterItems.characterImage}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />

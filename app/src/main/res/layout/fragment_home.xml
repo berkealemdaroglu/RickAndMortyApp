@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+            <variable
+                name="characterUiState"
+                type="com.ersinberkealemdaroglu.rickandmortyapp.ui.CharacterUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +23,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
+            android:visibility="@{characterUiState.listVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +34,11 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:visibility="invisible"
+            android:visibility="@{characterUiState.progressBarVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
