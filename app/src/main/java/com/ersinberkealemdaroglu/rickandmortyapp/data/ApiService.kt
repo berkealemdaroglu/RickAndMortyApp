@@ -12,8 +12,12 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET(GET_CHARACTERS)
-    suspend fun getCharacter() : CharacterModel
+    suspend fun getCharacter(
+        @Query("page") page : Int
+    ) : CharacterModel
 
     @GET(GET_EPISODE)
-    suspend fun getEpisode() : EpisodeModel
+    suspend fun getEpisode(
+        @Query("page") page : Int
+    ) : EpisodeModel
 }

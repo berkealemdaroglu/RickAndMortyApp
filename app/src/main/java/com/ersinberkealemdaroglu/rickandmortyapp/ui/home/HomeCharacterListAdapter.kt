@@ -18,8 +18,6 @@ class HomeCharacterListAdapter :
     PagingDataAdapter<CharacterItemUiState, HomeCharacterListAdapter.HomeCharacterListAdapterViewHolder>(
         ComparatorCharacter
     ) {
-    private var characterEpisode: List<CharacterItem> = listOf()
-    private var characterItemOnClickListener: CharacterItemOnClickListener? = null
 
     class HomeCharacterListAdapterViewHolder(
         private val characterBinding: CharacterListItemBinding,
@@ -37,10 +35,6 @@ class HomeCharacterListAdapter :
                 Navigation.findNavController(it).navigate(action)
             }
         }
-    }
-
-    fun setCharacterItemOnClickListener(characterItemOnClick: CharacterItemOnClickListener) {
-        this.characterItemOnClickListener = characterItemOnClick
     }
 
     override fun onBindViewHolder(holder: HomeCharacterListAdapterViewHolder, position: Int) {

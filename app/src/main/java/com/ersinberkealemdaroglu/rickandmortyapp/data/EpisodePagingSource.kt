@@ -17,11 +17,11 @@ class EpisodePagingSource(private val apiService: ApiService) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, EpisodeItemResult> {
         val page = params.key ?: Constants.STARTING_PAGE_INDEX
         return try {
-            val response = apiService.getEpisode()
+            val response = apiService.getEpisode(page)
             LoadResult.Page(
-                data = response.episodeItemResults,
+                data = response.results,
                 prevKey = if (page == Constants.STARTING_PAGE_INDEX) null else page.minus(1),
-                nextKey = if (response.episodeItemResults.isEmpty()) null else page.plus(1)
+                nextKey = if (response.results.isEmpty()) null else page.plus(1)
             )
         } catch (exception: Exception) {
             return LoadResult.Error(exception)
