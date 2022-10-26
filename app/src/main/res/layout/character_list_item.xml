@@ -5,26 +5,55 @@
 
     <data>
         <variable
-            name="characterItem"
-            type="com.ersinberkealemdaroglu.rickandmortyapp.domain.model.character.CharacterItem" />
-
-        <variable
             name="characterItems"
-            type="com.ersinberkealemdaroglu.rickandmortyapp.ui.CharacterItemUiState" />
+            type="com.ersinberkealemdaroglu.rickandmortyapp.ui.state.CharacterItemUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:downloadImageUrl="@{characterItems.characterImage}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/localEvents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="6dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="195dp"
+                android:layout_height="195dp"
+                android:scaleType="fitXY"
+                android:downloadImageUrl="@{characterItems.allCharacter.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="TEST TEST"
+                android:textSize="18sp"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
+                android:text="@{characterItems.allCharacter.name}"
+                android:textColor="@color/black"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

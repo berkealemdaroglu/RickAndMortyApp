@@ -1,19 +1,20 @@
-package com.ersinberkealemdaroglu.rickandmortyapp.ui.home
+package com.ersinberkealemdaroglu.rickandmortyapp.ui.episode
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ersinberkealemdaroglu.rickandmortyapp.R
-import com.ersinberkealemdaroglu.rickandmortyapp.databinding.FragmentHomeBinding
-import com.ersinberkealemdaroglu.rickandmortyapp.ui.state.CharacterItemUiState
-import com.ersinberkealemdaroglu.rickandmortyapp.ui.state.CharacterUiState
+import com.ersinberkealemdaroglu.rickandmortyapp.databinding.FragmentEpisodeListBinding
+import com.ersinberkealemdaroglu.rickandmortyapp.ui.state.EpisodeItemUiState
+import com.ersinberkealemdaroglu.rickandmortyapp.ui.state.EpisodeUiState
 import com.ersinberkealemdaroglu.rickandmortyapp.utils.ext.collect
 import com.ersinberkealemdaroglu.rickandmortyapp.utils.ext.collectLast
 import com.ersinberkealemdaroglu.rickandmortyapp.utils.ext.executeWithAction
@@ -22,24 +23,23 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-    private lateinit var homeBinding: FragmentHomeBinding
-    private val homeFragmentViewModel: HomeFragmentViewModel by viewModels()
-    private lateinit var homeCharacterListAdapter: HomeCharacterListAdapter
+class EpisodeListFragment : Fragment() {
+    private lateinit var episodeBinding : FragmentEpisodeListBinding
+    private val episodeListViewModel : EpisodeListViewModel by viewModels()
+    private lateinit var episodeAdapter : EpisodeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        collectLast(homeFragmentViewModel.userItemsUiStates, ::setUsers)
+        collectLast(episodeListViewModel.episodeItemUiState, ::setEpisode)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        return homeBinding.root
-
+        episodeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_episode_list, container, false)
+        return episodeBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,29 +50,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun init() {
-        homeCharacterListAdapter = HomeCharacterListAdapter()
-        homeBinding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        episodeAdapter = EpisodeAdapter()
+        episodeBinding.episodeRecyclerview.layoutManager = GridLayoutManager(context, 2)
     }
 
     private fun setAdapter() {
-        collect(flow = homeCharacterListAdapter.loadStateFlow
+        collect(flow = episodeAdapter.loadStateFlow
             .distinctUntilChangedBy { it.source.refresh }
             .map { it.refresh },
             action = ::setUsersUiState
         )
 
-        homeBinding.recyclerView.adapter = homeCharacterListAdapter
+        episodeBinding.episodeRecyclerview.adapter = episodeAdapter
+
     }
 
     private fun setUsersUiState(loadState: LoadState) {
-        homeBinding.executeWithAction {
-            characterUiState = CharacterUiState(loadState)
+        episodeBinding.executeWithAction {
+            episodeUiState = EpisodeUiState(loadState)
         }
     }
 
-
-    private suspend fun setUsers(userItemsPagingData: PagingData<CharacterItemUiState>) {
-        homeCharacterListAdapter.submitData(userItemsPagingData)
+    private suspend fun setEpisode(episodeItem: PagingData<EpisodeItemUiState>) {
+        episodeAdapter.submitData(episodeItem)
     }
 
 }

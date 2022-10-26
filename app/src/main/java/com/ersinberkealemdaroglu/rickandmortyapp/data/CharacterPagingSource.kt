@@ -17,7 +17,7 @@ class CharacterPagingSource(private val apiService: ApiService) : PagingSource<I
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterItem> {
         val page = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val response = apiService.getCharacter(page)
+            val response = apiService.getCharacter()
             LoadResult.Page(
                 data = response.results,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page.minus(1),

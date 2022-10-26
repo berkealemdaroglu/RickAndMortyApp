@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="characterUiState"
-                type="com.ersinberkealemdaroglu.rickandmortyapp.ui.CharacterUiState" />
+                type="com.ersinberkealemdaroglu.rickandmortyapp.ui.state.CharacterUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

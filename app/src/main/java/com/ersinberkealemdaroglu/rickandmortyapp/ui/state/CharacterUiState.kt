@@ -1,4 +1,4 @@
-package com.ersinberkealemdaroglu.rickandmortyapp.ui
+package com.ersinberkealemdaroglu.rickandmortyapp.ui.state
 
 import android.content.Context
 import androidx.paging.LoadState

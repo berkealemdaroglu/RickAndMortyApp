@@ -27,4 +27,9 @@
             android:name="characterItem"
             app:argType="com.ersinberkealemdaroglu.rickandmortyapp.domain.model.character.CharacterItem" />
     </fragment>
+    <fragment
+        android:id="@+id/episodeListFragment"
+        android:name="com.ersinberkealemdaroglu.rickandmortyapp.ui.episode.EpisodeListFragment"
+        android:label="EpisodeListFragment"
+        tools:layout="@layout/fragment_episode_list"/>
 </navigation>

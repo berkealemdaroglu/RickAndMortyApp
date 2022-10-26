@@ -10,16 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ersinberkealemdaroglu.rickandmortyapp.R
 import com.ersinberkealemdaroglu.rickandmortyapp.databinding.CharacterListItemBinding
 import com.ersinberkealemdaroglu.rickandmortyapp.domain.model.character.CharacterItem
-import com.ersinberkealemdaroglu.rickandmortyapp.domain.model.character.CharacterModel
-import com.ersinberkealemdaroglu.rickandmortyapp.ui.CharacterItemUiState
+import com.ersinberkealemdaroglu.rickandmortyapp.ui.state.CharacterItemUiState
 import com.ersinberkealemdaroglu.rickandmortyapp.utils.CharacterItemOnClickListener
 import com.ersinberkealemdaroglu.rickandmortyapp.utils.ext.executeWithAction
 
 class HomeCharacterListAdapter :
     PagingDataAdapter<CharacterItemUiState, HomeCharacterListAdapter.HomeCharacterListAdapterViewHolder>(
-        Comparator
+        ComparatorCharacter
     ) {
-    private val characterModel: CharacterModel = CharacterModel(null, listOf())
+    private var characterEpisode: List<CharacterItem> = listOf()
     private var characterItemOnClickListener: CharacterItemOnClickListener? = null
 
     class HomeCharacterListAdapterViewHolder(
@@ -32,7 +31,9 @@ class HomeCharacterListAdapter :
             }
 
             characterBinding.root.rootView.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(characterItemUiState.getAllCharacter())
+                val action = HomeFragmentDirections.actionHomeFragmentToCharacterDetailFragment(
+                    characterItemUiState.getAllCharacter()
+                )
                 Navigation.findNavController(it).navigate(action)
             }
         }
@@ -60,9 +61,12 @@ class HomeCharacterListAdapter :
         return HomeCharacterListAdapterViewHolder(characterBinding)
     }
 
-    object Comparator : DiffUtil.ItemCallback<CharacterItemUiState>() {
-        override fun areItemsTheSame(oldItem: CharacterItemUiState, newItem: CharacterItemUiState): Boolean {
-            return oldItem.getCharacterImage() == newItem.getCharacterImage()
+    object ComparatorCharacter : DiffUtil.ItemCallback<CharacterItemUiState>() {
+        override fun areItemsTheSame(
+            oldItem: CharacterItemUiState,
+            newItem: CharacterItemUiState
+        ): Boolean {
+            return oldItem.getAllCharacter() == newItem.getAllCharacter()
         }
 
         override fun areContentsTheSame(

@@ -2,7 +2,9 @@ package com.ersinberkealemdaroglu.rickandmortyapp.di
 
 import com.ersinberkealemdaroglu.rickandmortyapp.data.ApiService
 import com.ersinberkealemdaroglu.rickandmortyapp.data.repository.CharacterRepositoryImp
+import com.ersinberkealemdaroglu.rickandmortyapp.data.repository.EpisodeRepositoryImp
 import com.ersinberkealemdaroglu.rickandmortyapp.domain.repository.CharacterRepository
+import com.ersinberkealemdaroglu.rickandmortyapp.domain.repository.EpisodeRepository
 import com.ersinberkealemdaroglu.rickandmortyapp.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -54,4 +56,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideCharacter(apiService: ApiService): CharacterRepository = CharacterRepositoryImp(apiService)
+
+    @Provides
+    @Singleton
+    fun provideEpisode(apiService: ApiService) : EpisodeRepository = EpisodeRepositoryImp(apiService)
 }
