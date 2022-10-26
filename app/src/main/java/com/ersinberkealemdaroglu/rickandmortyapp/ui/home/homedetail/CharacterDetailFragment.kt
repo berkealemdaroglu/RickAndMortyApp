@@ -1,4 +1,4 @@
-package com.ersinberkealemdaroglu.rickandmortyapp.ui
+package com.ersinberkealemdaroglu.rickandmortyapp.ui.home.homedetail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

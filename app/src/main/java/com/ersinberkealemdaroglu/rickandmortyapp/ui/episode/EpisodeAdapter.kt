@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,11 @@ class EpisodeAdapter() : PagingDataAdapter<EpisodeItemUiState, EpisodeAdapter.Ep
         fun bind(episodeItemUiState: EpisodeItemUiState){
             episodeBinding.executeWithAction {
                 this.characterEpisode = episodeItemUiState
+            }
+
+            episodeBinding.root.setOnClickListener {
+                val action = EpisodeListFragmentDirections.actionEpisodeListFragmentToEpisodeDetailFragment(episodeItemUiState.getAllEpisode())
+                Navigation.findNavController(it).navigate(action)
             }
         }
     }

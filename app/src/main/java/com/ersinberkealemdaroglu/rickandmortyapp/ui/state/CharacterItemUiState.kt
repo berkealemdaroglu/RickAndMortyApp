@@ -9,4 +9,5 @@ data class CharacterItemUiState(
     ) : BaseUiState() {
 
     fun getAllCharacter() = characterItem
+    fun getCharacterId() = characterItem.id
 }

@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="com.ersinberkealemdaroglu.rickandmortyapp.ui.CharacterDetailFragment"
+        android:name="com.ersinberkealemdaroglu.rickandmortyapp.ui.home.homedetail.CharacterDetailFragment"
         android:label="CharacterDetailFragment"
         tools:layout="@layout/fragment_character_detail">
         <argument
@@ -31,5 +31,22 @@
         android:id="@+id/episodeListFragment"
         android:name="com.ersinberkealemdaroglu.rickandmortyapp.ui.episode.EpisodeListFragment"
         android:label="EpisodeListFragment"
-        tools:layout="@layout/fragment_episode_list"/>
+        tools:layout="@layout/fragment_episode_list">
+        <action
+            android:id="@+id/action_episodeListFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.ersinberkealemdaroglu.rickandmortyapp.ui.episode.episodedetail.EpisodeDetailFragment"
+        android:label="EpisodeDetailFragment"
+        tools:layout="@layout/fragment_episode_detail">
+        <argument
+            android:name="episodeItem"
+            app:argType="com.ersinberkealemdaroglu.rickandmortyapp.domain.model.episode.EpisodeItemResult" />
+    </fragment>
 </navigation>
