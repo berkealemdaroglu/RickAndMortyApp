@@ -7,6 +7,10 @@
             <variable
                 name="episodeDetailItem"
                 type="com.ersinberkealemdaroglu.rickandmortyapp.domain.model.episode.EpisodeItemResult" />
+
+        <variable
+            name="characterVisibility"
+            type="com.ersinberkealemdaroglu.rickandmortyapp.ui.state.CharacterUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,6 +72,7 @@
             android:id="@+id/episodeDetailRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="@{characterVisibility.listVisibility}"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

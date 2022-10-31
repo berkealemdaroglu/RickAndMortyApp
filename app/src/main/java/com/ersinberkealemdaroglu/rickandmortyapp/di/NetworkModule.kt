@@ -60,4 +60,5 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideEpisode(apiService: ApiService) : EpisodeRepository = EpisodeRepositoryImp(apiService)
+
 }

@@ -114,8 +114,10 @@
             tools:text="Citadel of Ricks" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="407dp"
             android:layout_height="304dp"
+            tools:listitem="@layout/character_detail_episode_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

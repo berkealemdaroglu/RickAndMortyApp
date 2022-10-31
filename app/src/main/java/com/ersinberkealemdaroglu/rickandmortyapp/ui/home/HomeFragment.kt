@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        collectLast(homeFragmentViewModel.userItemsUiStates, ::setUsers)
+        collectLast(homeFragmentViewModel.userItemsUiStates, ::setUser)
     }
 
     override fun onCreateView(
@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    private suspend fun setUsers(userItemsPagingData: PagingData<CharacterItemUiState>) {
+    private suspend fun setUser(userItemsPagingData: PagingData<CharacterItemUiState>) {
         homeCharacterListAdapter.submitData(userItemsPagingData)
     }
 

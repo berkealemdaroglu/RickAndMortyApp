@@ -2,12 +2,11 @@ package com.ersinberkealemdaroglu.rickandmortyapp.ui.episode
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -25,21 +24,23 @@ import kotlinx.coroutines.flow.map
 
 @AndroidEntryPoint
 class EpisodeListFragment : Fragment() {
-    private lateinit var episodeBinding : FragmentEpisodeListBinding
-    private val episodeListViewModel : EpisodeListViewModel by viewModels()
-    private lateinit var episodeAdapter : EpisodeAdapter
+    private lateinit var episodeBinding: FragmentEpisodeListBinding
+    private val episodeListViewModel: EpisodeListViewModel by viewModels()
+    private lateinit var episodeAdapter: EpisodeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         collectLast(episodeListViewModel.episodeItemUiState, ::setEpisode)
+
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        episodeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_episode_list, container, false)
+        episodeBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_episode_list, container, false)
         return episodeBinding.root
     }
 
@@ -75,7 +76,6 @@ class EpisodeListFragment : Fragment() {
 
     private suspend fun setEpisode(episodeItem: PagingData<EpisodeItemUiState>) {
         episodeAdapter.submitData(episodeItem)
-        Log.v("osman", "$episodeItem")
     }
 
 }

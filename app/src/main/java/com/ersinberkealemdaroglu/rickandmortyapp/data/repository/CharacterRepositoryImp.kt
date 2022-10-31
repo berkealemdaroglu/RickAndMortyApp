@@ -23,5 +23,9 @@ class CharacterRepositoryImp (private val apiService: ApiService) : CharacterRep
         ).flow
     }
 
+    override suspend fun getCharacterId(id: Int): Call<CharacterModel> {
+        return apiService.getCharacterId(id)
+    }
+
 
 }
